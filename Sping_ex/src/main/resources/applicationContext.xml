@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--        将指定的类配置给Spring，让Spring容器创建其实例-->
+    <bean id="userDao" class="org.wjj.ioc.UserDaoimpl"/>
+
+    <bean id="userService" class="org.wjj.ioc.UserServiceimpl">
+        <!--                将id为userDao 的Bean实例 注入到userService 实例-->
+        <property name="userDao" ref="userDao"/>
+        <!--            -->
+        <constructor-arg name="mag" value="构造构造器"/>
+    </bean>
+
+    <bean id="dog" class="org.wjj.ioc.ex1.DogDaoImpl">
+        <property name="name" value="xiaobai"></property>
+        <property name="age" value="10"></property>
+    </bean>
+
+    <bean id="cat" class="org.wjj.ioc.ex1.CatDaoImpl">
+        <property name="name" value="喵喵"></property>
+        <property name="age" value="10"></property>
+    </bean>
+
+<!--    <bean id="book" class="org.wjj.ioc.ex2.Book">-->
+<!--        <constructor-arg name="book_name" value="活着"/>-->
+<!--        <constructor-arg name="price" value="50"/>-->
+<!--        <constructor-arg name="code" value="10"/>-->
+<!--    </bean>-->
+
+    <bean id="girl" class="org.wjj.ioc.ex3.Person">
+        <property name="name" value="女孩"/>
+        <property name="clothes" ref="dress"/>
+    </bean>
+
+    <bean id="boy" class="org.wjj.ioc.ex3.Person">
+        <property name="name" value="男孩"/>
+        <property name="clothes" ref="suit"/>
+    </bean>
+
+    <bean id="dress" class="org.wjj.ioc.ex3.Clothes">
+        <property name="style" value="连衣裙"/>
+        <property name="color" value="红色"/>
+    </bean>
+
+    <bean id="suit" class="org.wjj.ioc.ex3.Clothes">
+        <property name="style" value="小西装"/>
+        <property name="color" value="蓝色"/>
+    </bean>
+    <bean id="pen1" class="org.wjj.ioc.ex4.Pen">
+        <property name="name" value="钢笔"/>
+    </bean>
+    <bean id="pen2" class="org.wjj.ioc.ex4.Pen">
+        <property name="name" value="铅笔"/>
+    </bean>
+     <bean id="pen3" class="org.wjj.ioc.ex4.Pen">
+        <property name="name" value="水笔"/>
+    </bean>
+
+
+
+    <bean id="schoolBag" class="org.wjj.ioc.ex4.SchoolBag">
+        <property name="color" value="red"/>
+        <property  name="pencilCase">
+            <list>
+                <ref bean="pen1"/>
+                <ref bean="pen2"/>
+                <ref bean="pen3"/>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+
+</beans>
