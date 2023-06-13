@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="[%style{%d}{bright,yellow}][%highlight{%p}][%style{%t}{bright,blue}][%style{%C}{bright,cyan}]: %msg%n%style{%throwable}{red}">
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="RollingFile" fileName="D:\workstation\backing-learning\第八周\logs\application.log"
+                     filePattern="${D:\workstation\backing-learning\第八周\logs\application-%d{yyyy-MM-dd}.log.gz"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="Console" level="debug"/>
+            <appender-ref ref="RollingFile" level="info"/>
+        </root>
+    </loggers>
+</configuration>
